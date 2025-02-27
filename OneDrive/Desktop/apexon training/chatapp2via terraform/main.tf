@@ -180,20 +180,14 @@ resource "azurerm_linux_virtual_machine_scale_set" "frontend_vmss" {
   instances           = 1
   admin_username      = "azureuser"
   resource_group_name = azurerm_resource_group.rg.name
-#source_image_id     = "/subscriptions/dd868d94-dfef-4a1f-b0d3-f953c98b9c04/resourceGroups/ChatAppDeploymentRG/providers/Microsoft.Compute/galleries/CorrectedChatAppGallery/images/CorrectedChatappFrontendimgdef/versions/1.0.0"
-#   # Security Profile for Trusted Launch
-#   secure_boot_enabled = true
-# plan {
-#     name      = "frontend"            # Use the SKU name
-#     publisher = "Aishwarya"           # Use the Publisher name
-#     product   = "ubuntu"              # Use the Offer name
-#   }
-    source_image_reference {
-        publisher = "Canonical"
-        offer     = "UbuntuServer"
-        sku       = "18.04-LTS"
-        version   = "18.04.202401161"
-    }
+  source_image_id     = "/subscriptions/dd868d94-dfef-4a1f-b0d3-f953c98b9c04/resourceGroups/ChatAppDeploymentRG/providers/Microsoft.Compute/galleries/CorrectedChatAppGallery/images/CorrectedChatappFrontendimgdef/versions/1.0.0"
+  # Security Profile for Trusted Launch
+  secure_boot_enabled = true
+plan {
+    name      = "frontend"            # Use the SKU name
+    publisher = "Aishwarya"           # Use the Publisher name
+    product   = "ubuntu"              # Use the Offer name
+  }
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
@@ -280,20 +274,14 @@ resource "azurerm_linux_virtual_machine_scale_set" "backend_vmss" {
   instances           = 1
   admin_username      = "azureuser"
   resource_group_name = azurerm_resource_group.rg.name
-#   source_image_id     = "/subscriptions/dd868d94-dfef-4a1f-b0d3-f953c98b9c04/resourceGroups/ChatAppDeploymentRG/providers/Microsoft.Compute/galleries/CorrectedChatAppGallery/images/CorrectedBackengChatAppimg/versions/1.0.0"  
-#   secure_boot_enabled          = true
+  source_image_id     = "/subscriptions/dd868d94-dfef-4a1f-b0d3-f953c98b9c04/resourceGroups/ChatAppDeploymentRG/providers/Microsoft.Compute/galleries/CorrectedChatAppGallery/images/CorrectedBackengChatAppimg/versions/1.0.0"  
+  secure_boot_enabled          = true
 
-# plan {
-#     name      = "updated"               # SKU name
-#     publisher = "Aishwarya"             # Publisher name
-#     product   = "ubuntu"                # Offer name
-#   }
-    source_image_reference {
-        publisher = "Canonical"
-        offer     = "UbuntuServer"
-        sku       = "18.04-LTS"
-        version   = "18.04.202401161"
-    }
+plan {
+    name      = "updated"               # SKU name
+    publisher = "Aishwarya"             # Publisher name
+    product   = "ubuntu"                # Offer name
+  }
 
   os_disk {
     caching              = "ReadWrite"
@@ -430,4 +418,5 @@ resource "azurerm_network_interface" "database_nic" {
   # Associate NSG with NIC
   #network_security_group_id = azurerm_network_security_group.database_nsg.id
 }
+
 
